@@ -6,6 +6,8 @@ var params = {
     screen_name: 'ndll_ku',
     count: 20
     };
+var keys = require('./keys');
+var client = new Twitter(keys.twitterKeys);
 var request = require('request');
 var fs = require("fs");
 
@@ -27,12 +29,12 @@ switch (command) {
 
 function myTweets() {
     //console.log("Tweet function called.");
-    var client = new Twitter({
-        consumer_key: 'ez4jmXe5MI1p1yAvasfBDrB8D',
-        consumer_secret: 'PuG0vOQE0Xq8KTD6DjM8P7aEg2zIq7QF8PqoE6LvPFZnXUzUT8',
-        access_token_key: '902203472954748929-F1pxjNwTMR4e5aUnUGpBH5gjKPQD8pm',
-        access_token_secret: 'np9mElj3wcgGir8FpIZm7haM60r66ZzsDq243m8dpRwLT'
-    });
+    // var client = new Twitter({
+    //     consumer_key: '',
+    //     consumer_secret: '',
+    //     access_token_key: '',
+    //     access_token_secret: ''
+    // });
  
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
