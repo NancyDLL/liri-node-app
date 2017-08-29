@@ -10,8 +10,8 @@ var keys = require('./keys');
 var client = new Twitter(keys.twitterKeys);
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify({
-    id: <your spotify client id>,
-    secret: <your spotify client secret>
+    id: 'c1c1927486ea45999cfe4f25ea20951b',
+    secret: 'a0fdeda5c3664887bd192b8ac9871b79'
     });
 var request = require('request');
 var fs = require("fs");
@@ -59,13 +59,18 @@ function spotifyThis(thing) {
     if (thing == null) {
         thing = 'The Sign';
     }
-    spotify.search('https://api.spotify.com/v1/search?q=' + thing + '&type=track', function(error, response, body) {
-        if (!error && response.statusCode == 200) {
+    spotify.search({
+    	type: 'track',
+    	query: thing 
+    }, function(error, data) {
+        if (error) {
+        	console.log('Error occurred: ' + error);
+			}
             console.log('--------------------');
-            console.log('Artist: ' + JSON.parse(body).tracks.items[0].artists[0].name);
-            console.log('Song: ' + JSON.parse(body).tracks.items[0].name);
-            console.log('Preview Link: ' + JSON.parse(body).tracks.items[0].preview_url);
-            console.log('Album: ' + jJSON.parse(body).tracks.items[0].album.name);
+            console.log('Artist: ' + data.tracks.items[0].artists[0].name);
+            console.log('Song: ' + data.tracks.items[0].name);
+            console.log('Preview Link: ' + data.tracks.items[0].preview_url);
+            console.log('Album: ' + data.tracks.items[0].album.name);
             console.log('--------------------');
         }
     });
