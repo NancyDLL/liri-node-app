@@ -8,6 +8,11 @@ var params = {
     };
 var keys = require('./keys');
 var client = new Twitter(keys.twitterKeys);
+var Spotify = require('node-spotify-api');
+var spotify = new Spotify({
+    id: <your spotify client id>,
+    secret: <your spotify client secret>
+    });
 var request = require('request');
 var fs = require("fs");
 
@@ -51,6 +56,19 @@ function myTweets() {
 
 function spotifyThis(thing) {
     //console.log("Spotify function called.");
+    if (thing == null) {
+        thing = 'The Sign';
+    }
+    spotify.search('https://api.spotify.com/v1/search?q=' + thing + '&type=track', function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log('--------------------');
+            console.log('Artist: ' + JSON.parse(body).tracks.items[0].artists[0].name);
+            console.log('Song: ' + JSON.parse(body).tracks.items[0].name);
+            console.log('Preview Link: ' + JSON.parse(body).tracks.items[0].preview_url);
+            console.log('Album: ' + jJSON.parse(body).tracks.items[0].album.name);
+            console.log('--------------------');
+        }
+    });
 }
 
 function movieThis(thing) {
