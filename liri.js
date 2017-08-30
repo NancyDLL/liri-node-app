@@ -64,8 +64,8 @@ function spotifyThis(thing) {
         	return;
 			}
             console.log('--------------------');
-            console.log('Artist: ' + data.tracks.items[0].artists[0].name);
-            console.log('Song: ' + data.tracks.items[0].name);
+            console.log('Artist(s): ' + data.tracks.items[0].artists[0].name);
+            console.log('Song Title: ' + data.tracks.items[0].name);
             console.log('Preview Link: ' + data.tracks.items[0].preview_url);
             console.log('Album: ' + data.tracks.items[0].album.name);
             console.log('--------------------');
@@ -76,16 +76,19 @@ function spotifyThis(thing) {
 //OMDB function START
 function movieThis(thing) {
     //console.log("OMDB function called.");
+    if (thing == null) {
+        thing = 'Mr. Nobody';
+    }
     request("http://www.omdbapi.com/?t="+thing+"&y=&plot=short&apikey=40e9cece", function(error, response, body) {
         if (!error && response.statusCode === 200) {
             console.log('--------------------');
-            console.log('Title: ' + JSON.parse(body).Title);
-            console.log('Year: ' + JSON.parse(body).Year);
+            console.log('Movie Title: ' + JSON.parse(body).Title);
+            console.log('Release Year: ' + JSON.parse(body).Year);
             console.log('IMDb Rating: ' + JSON.parse(body).imdbRating);
             console.log('Country: ' + JSON.parse(body).Country);
             console.log('Language: ' + JSON.parse(body).Language);
             console.log('Plot: ' + JSON.parse(body).Plot);
-            console.log('Actors: ' + JSON.parse(body).Actors);
+            console.log('Lead Actors: ' + JSON.parse(body).Actors);
             console.log('--------------------');
         }
     });
@@ -96,8 +99,11 @@ function random() {
     //console.log("Read text function called.");
     fs.readFile("random.txt", "utf8", function(error, data) {
         if (error) {
-            return console.log(error);
+            console.log(error);
+        } else {
+            //var dataArr = data.split(',');
+            spotifyThis(data[1]);
         }
-    console.log(data);
+    //console.log(data);
     });
 }
