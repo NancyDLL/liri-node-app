@@ -56,7 +56,7 @@ function myTweets() {
 
 function spotifyThis(thing) {
     //console.log("Spotify function called.");
-    if (thing == null) {
+     if (thing == null) {
         thing = 'The Sign';
     }
     spotify.search({
@@ -65,6 +65,7 @@ function spotifyThis(thing) {
     }, function(error, data) {
         if (error) {
         	console.log('Error occurred: ' + error);
+        	return;
 			}
             console.log('--------------------');
             console.log('Artist: ' + data.tracks.items[0].artists[0].name);
@@ -72,8 +73,8 @@ function spotifyThis(thing) {
             console.log('Preview Link: ' + data.tracks.items[0].preview_url);
             console.log('Album: ' + data.tracks.items[0].album.name);
             console.log('--------------------');
-        }
-    });
+        });
+    }
 }
 
 function movieThis(thing) {
