@@ -73,8 +73,7 @@ function spotifyThis(thing) {
             console.log('Preview Link: ' + data.tracks.items[0].preview_url);
             console.log('Album: ' + data.tracks.items[0].album.name);
             console.log('--------------------');
-        });
-    }
+    });
 }
 
 function movieThis(thing) {
