@@ -32,15 +32,9 @@ switch (command) {
         break;
 }
 
+//Tweet function START
 function myTweets() {
     //console.log("Tweet function called.");
-    // var client = new Twitter({
-    //     consumer_key: '',
-    //     consumer_secret: '',
-    //     access_token_key: '',
-    //     access_token_secret: ''
-    // });
- 
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
             for (i = 0; i < tweets.length; i++) {
@@ -53,7 +47,9 @@ function myTweets() {
         }
     });
 }
+//Tweet function END
 
+//Spotify function START
 function spotifyThis(thing) {
     //console.log("Spotify function called.");
      if (thing == null) {
@@ -75,7 +71,9 @@ function spotifyThis(thing) {
             console.log('--------------------');
     });
 }
+//Spotify function END
 
+//OMDB function START
 function movieThis(thing) {
     //console.log("OMDB function called.");
     request("http://www.omdbapi.com/?t="+thing+"&y=&plot=short&apikey=40e9cece", function(error, response, body) {
@@ -92,6 +90,7 @@ function movieThis(thing) {
         }
     });
 }
+//OMDB function END
 
 function random() {
     //console.log("Read text function called.");
